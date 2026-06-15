@@ -1,5 +1,3 @@
-
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "eDP-1",
     mode     = "preferred",
@@ -8,17 +6,16 @@ hl.monitor({
 })
 
 -- Using keyd to remap escape to capslock at /etc/keyd/default.conf
--- Using nm-connection-editor to change things with network manager, but I should probably learn how to do it without that.
-
 
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
 
 -- Set programs that you use
-local terminal    = "kitty"
+local terminal    = "ghostty"
 local fileManager = "dolphin"
 local menu        = "hyprlauncher"
+local browser 	  = "firefox"
 
 
 -------------------
