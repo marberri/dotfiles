@@ -1,4 +1,4 @@
--- General ConfigG
+-- General Config
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'no'
@@ -128,5 +128,10 @@ end, { desc = "FZF Help Tags" })
 packadd("tree-sitter-manager.nvim")
 require("tree-sitter-manager").setup({
 	auto_install = true,
-	nerdfont = false,
+	noauto_install = {
+		"c", "lua", "markdown", "markdown_inline", "query", "vim", "vimdoc"
+	},
 })
+
+-- Worst thing ever
+vim.api.nvim_set_hl(0, "Error", { link = "Normal" }) 
