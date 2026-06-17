@@ -1,4 +1,4 @@
--- General Config
+-- General ConfigG
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'no'
@@ -40,8 +40,6 @@ vim.keymap.set("n", "<M-k>", ":m .-2<CR>==", { desc = "Move line up" })
 
 vim.keymap.set("v", "<", "<gv", { desc = "indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "indent right and reselect" })
-
-vim.keymap.set("n", "<leader>bd", "<CMD>bdelete<CR>", { desc = "close current buffer" })
 
 -- Plugins
 vim.pack.add({
@@ -97,10 +95,10 @@ require("lualine").setup({
 	sections = {
 		lualine_a = {'mode'},
 		lualine_b = {},
-		lualine_c = {'filename', 'diagnostics'},
-		lualine_x = {'filetype', 'filesize'},
+		lualine_c = {'filename'},
+		lualine_x = {'diagnostics', 'location'},
 		lualine_y = {},
-		lualine_z = {'location'}
+		lualine_z = {},
 	},
 })
 
