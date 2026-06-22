@@ -49,6 +49,7 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/romus204/tree-sitter-manager.nvim",
+	"https://github.com/rebelot/kanagawa.nvim",
 })
 
 local function packadd(name)
@@ -135,3 +136,15 @@ require("tree-sitter-manager").setup({
 
 -- Worst thing ever
 vim.api.nvim_set_hl(0, "Error", { link = "Normal" }) 
+
+-- Colorscheme
+-- I'm not the biggest fan of this theme, or any theme I can find, but this is 
+-- the best at making things easier to read while also not standing out too much.
+packadd("kanagawa.nvim")
+require("kanagawa").setup({
+    keywordStyle = { italic = false },
+    statementStyle = { bold = false },
+})
+vim.o.background = "dark"
+vim.cmd.colorscheme "kanagawa-dragon"
+

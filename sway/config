@@ -10,7 +10,6 @@
 # - Figure out what's going on with swayidle
 # - Install and set up a blue light filter
 # - If I want to, mess with the title bar and window borders
-
 # I'm starting to genuinely not care what my system looks like, so i'll just stick to these defaults for now.
 
 # I still have to go through this and clean up the default config...
@@ -27,6 +26,7 @@ set $up k
 set $right l
 
 set $term foot
+set $browser firefox
 
 # TODO: find out what's going on under me =w=
 
@@ -69,8 +69,10 @@ output eDP-1 scale 1.2
 
 # === Bindings ===
 bindsym $mod+Return exec $term
+bindsym $mod+b exec $browser
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
+bindsym $mod+c exec grim -g "$(slurp -p)" -t ppm - | magick - -format '%[pixel:p{0,0}]' txt:- | wl-copy
 
 # Move and resize windows
 floating_modifier $mod normal
@@ -78,9 +80,12 @@ floating_modifier $mod normal
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-# TODO: make this less evil
+# TODO: make this less evil looking
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+# bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# perhaps i could use rofi for confirmation
+bindsym $mod+Shift+e exec 'swaymsg exit'
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -116,31 +121,26 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 # TODO: figure out all the layout stuff below
 
-#
-# Layout stuff:
-#
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
-	bindsym $mod+b splith
-	bindsym $mod+v splitv
+# === Layout ===
 
-# Switch the current container between different layout styles
-	bindsym $mod+s layout stacking
-	bindsym $mod+w layout tabbed
-	bindsym $mod+e layout toggle split
+# Declare where new windows will open (horizontally or vertically)
+bindsym $mod+Shift+b splith
+bindsym $mod+Shift+v splitv
 
-# Make the current focus fullscreen
-	bindsym $mod+f fullscreen
+# TODO: Learn the difference between these
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
-# Toggle the current focus between tiling and floating mode
-	bindsym $mod+Shift+space floating toggle
+bindsym $mod+f fullscreen
 
-# Swap focus between the tiling area and the floating area
-# bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
 
 # Move focus to the parent container
-	bindsym $mod+a focus parent
+# ?
+bindsym $mod+a focus parent
+
 #
 # Scratchpad:
 #

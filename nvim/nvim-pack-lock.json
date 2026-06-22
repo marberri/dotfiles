@@ -4,6 +4,10 @@
       "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "kanagawa.nvim": {
+      "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
+      "src": "https://github.com/rebelot/kanagawa.nvim"
+    },
     "lualine.nvim": {
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -20,9 +24,17 @@
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "tokyonight.nvim": {
+      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+      "src": "https://github.com/folke/tokyonight.nvim"
+    },
     "tree-sitter-manager.nvim": {
-      "rev": "95f81026390077f8eea9eef6d32ad59d4c3bd3ee",
+      "rev": "fc631e12e5581eb8884c8ba6a69359133ef3fdee",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
+    },
+    "zenbones.nvim": {
+      "rev": "239bdb9a09c8d38c752c43590d02f654ed0da2b0",
+      "src": "https://github.com/zenbones-theme/zenbones.nvim"
     }
   }
 }
