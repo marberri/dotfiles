@@ -1,0 +1,21 @@
+[global]
+background = "#1d2428"
+foreground = "#f8f9e8"
+frame_color = "#cae0a7"
+progress_bar = false
+font = IosevkaNerdFontMono 12
+
+[urgency_low]
+background = "#1d2428"
+foreground = "#839e9a"
+frame_color = "#839e9a"
+
+[urgency_normal]
+background = "#1d2428"
+foreground = "#f8f9e8"
+frame_color = "#cae0a7"
+
+[urgency_critical]
+background = "#1d2428"
+foreground = "#f8f9e8"
+frame_color = "#f57f82"
