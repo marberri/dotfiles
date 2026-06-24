@@ -127,7 +127,6 @@ bindsym $mod+Shift+0 move container to workspace number 10
 bindsym $mod+Shift+b splith
 bindsym $mod+Shift+v splitv
 
-# TODO: Learn the difference between these
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -137,8 +136,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
-# Move focus to the parent container
-# ?
+# Move focus to the parent container (what does that even mean)
 bindsym $mod+a focus parent
 
 #

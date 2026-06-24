@@ -106,7 +106,7 @@ require("lualine").setup({
 -- Lua Fzf
 packadd("fzf-lua")
 require("fzf-lua").setup({'fzf-native'})
--- require("fzf-lua").setup({'fzf-vim'}) 
+-- require("fzf-lua").setup({'fzf-vim'})
 
 vim.keymap.set("n", "<leader>ff", function()
 	require("fzf-lua").files()
@@ -135,7 +135,7 @@ require("tree-sitter-manager").setup({
 })
 
 -- Worst thing ever
-vim.api.nvim_set_hl(0, "Error", { link = "Normal" }) 
+vim.api.nvim_set_hl(0, "Error", { link = "Normal" })
 
 -- Colorscheme
 packadd("evergarden")
@@ -144,8 +144,21 @@ require("evergarden").setup({
   theme = {
     variant = 'winter', -- 'winter'|'fall'|'spring'|'summer'
     accent = 'green',
-  }, 
+  },
+  editor = {
+	  override_terminal = true,
+  },
 })
 vim.cmd.colorscheme "evergarden"
 
+-- Automatically trim trailing whitespace (lowkey stolen from somewhere, but useful)
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = {"*"},
+    callback = function()
+      local save_cursor = vim.fn.getpos(".")
+      pcall(function() vim.cmd [[%s/\s\+$//e]] end) -- magic to my brain
+      vim.fn.setpos(".", save_cursor)
+    end,
+})
 
+-- Writing a plugin that does simplified Emacs Compilation Mode-like functionality would be cool
