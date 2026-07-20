@@ -14,6 +14,7 @@ vim.opt.smartcase = true
 vim.opt.inccommand = "split"
 vim.opt.termguicolors = true
 
+vim.opt.winborder = "rounded"
 vim.opt.cmdheight = 0
 vim.opt.showmode = false
 vim.opt.swapfile = false
@@ -52,6 +53,7 @@ vim.pack.add({
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/romus204/tree-sitter-manager.nvim",
 	{ src = "https://codeberg.org/evergarden/nvim.git", name = "evergarden" },
+	"https://github.com/neovim/nvim-lspconfig",
 })
 
 local function packadd(name)
@@ -94,16 +96,16 @@ require("lualine").setup({
 		lualine_a = {'mode'},
 		lualine_b = {'filename'},
 		lualine_c = {},
-		lualine_x = {'lsp_status', 'diagnostics', 'location'},
-		lualine_y = {'filesize'},
+		lualine_x = {'location'},
+		lualine_y = {'lsp_status'},
 		lualine_z = {'filetype'},
 	},
 })
 
 -- Lua Fzf
 packadd("fzf-lua")
-require("fzf-lua").setup({'fzf-native'})
--- require("fzf-lua").setup({'fzf-vim'})
+-- require("fzf-lua").setup({'default'})
+require("fzf-lua").setup({'telescope'})
 
 vim.keymap.set("n", "<leader>ff", function()
 	require("fzf-lua").files()
@@ -121,6 +123,11 @@ vim.keymap.set("n", "<leader>fh", function()
 	require("fzf-lua").help_tags()
 end, { desc = "FZF Help Tags" })
 
+vim.keymap.set("n", "<leader>fd", function()
+	require("fzf-lua").diagnostics_document()
+end, { desc = "FZF LSP Diagnostics" })
+
+
 -- Treesitter - Managing Parsers (functionality native to nvim)
 -- `:TSManager` and `:checkhealth vim.treesitter`
 packadd("tree-sitter-manager.nvim")
@@ -130,9 +137,6 @@ require("tree-sitter-manager").setup({
 		"c", "lua", "markdown", "markdown_inline", "query", "vim", "vimdoc"
 	},
 })
-
--- Worst thing ever
-vim.api.nvim_set_hl(0, "Error", { link = "Normal" })
 
 -- Colorscheme
 packadd("evergarden")
@@ -159,3 +163,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- Native Lsp...
+packadd("nvim-lspconfig")
+vim.lsp.enable({"lua_ls", "clangd" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(ev)
+-- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+-- 		if client:supports_method('textDocument/completion') then
+-- 			vim.lsp.completion.enable(true, client.id, ev.buf, {autotrigger = true})
+-- 		end
+
+		vim.diagnostic.config({ virtual_text = false, virtual_lines = false, underline = false })
+	end,
+})
+
+-- Worst thing ever
+vim.api.nvim_set_hl(0, "Error", { link = "Normal" })
+
