@@ -3,21 +3,24 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'no'
 vim.opt.wrap = true
+vim.opt.textwidth = 80 -- use gq
 vim.opt.linebreak = true
-
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = false -- tab superiority
-vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+vim.opt.termguicolors = true
 
 vim.opt.cmdheight = 0
 vim.opt.showmode = false
 vim.opt.swapfile = false
+vim.opt.backup = false
 vim.opt.fillchars = { eob = " " } -- hide "~" on empty lines
 vim.opt.mouse = "nv"
+vim.opt.scrolloff = 8
 
 vim.opt.clipboard:append("unnamedplus")
 
@@ -43,9 +46,8 @@ vim.keymap.set("v", ">", ">gv", { desc = "indent right and reselect" })
 
 -- Plugins
 vim.pack.add({
-    "https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
-	"https://github.com/nvim-mini/mini.pairs",
+    "https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/romus204/tree-sitter-manager.nvim",
@@ -60,7 +62,7 @@ end
 -- Delete plugins here by pressing `gra` over it (for some reason)
 vim.keymap.set("n", "<leader>vpu", function()
 	vim.pack.update(nil, { offline = true })
-end, { desc = "Open parent directory" })
+end)
 
 -- Silly little icons for the few things that use it
 packadd("nvim-web-devicons")
@@ -81,12 +83,7 @@ require("oil").setup({
 
 vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- Pairs ^-^
-packadd("mini.pairs")
-require("mini.pairs").setup()
-
 -- Status Line
--- As stripped as possible...
 packadd("lualine.nvim")
 require("lualine").setup({
 	options = {
@@ -95,11 +92,11 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = {'mode'},
-		lualine_b = {},
-		lualine_c = {'filename'},
-		lualine_x = {'diagnostics', 'location'},
-		lualine_y = {},
-		lualine_z = {},
+		lualine_b = {'filename'},
+		lualine_c = {},
+		lualine_x = {'lsp_status', 'diagnostics', 'location'},
+		lualine_y = {'filesize'},
+		lualine_z = {'filetype'},
 	},
 })
 
@@ -149,7 +146,7 @@ require("evergarden").setup({
 	  override_terminal = true,
   },
 })
-vim.cmd.colorscheme "evergarden"
+vim.cmd.colorscheme("evergarden")
 
 -- Automatically trim trailing whitespace (lowkey stolen from somewhere, but useful)
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -161,4 +158,4 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end,
 })
 
--- Writing a plugin that does simplified Emacs Compilation Mode-like functionality would be cool
+-- Native Lsp...

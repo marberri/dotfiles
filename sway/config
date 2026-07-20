@@ -17,6 +17,9 @@
 # title bar - might get rid of this, along with the blue outlines if i can
 font IosevkaNerdFontMono 8
 
+# my poor eyes
+exec gammastep
+
 # === Variables ===
 set $mod Mod4
 
@@ -45,7 +48,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 output * bg /home/marberri/Pictures/Wallpapers/steinsgate-characters.jpg fill
 # output * bg /home/marberri/Pictures/Wallpapers/gumi-2.jpg fill
 
-# === Display === 
+# === Display ===
 output eDP-1 pos 0 0 res 1920x1080
 output eDP-1 scale 1.2
 
